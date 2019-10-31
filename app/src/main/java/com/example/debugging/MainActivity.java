@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.debugging.arithmetic.Arithmetic;
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Arithmetic arithmetic;
     private int first,second ,result;
 
+    private TextView tvOutput;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,9 +26,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         etFirst = findViewById(R.id.etFirst);
         etSecond = findViewById(R.id.etSecond);
+        tvOutput = findViewById(R.id.tvOutput);
         btnSum = findViewById(R.id.btnSum);
         btnMultiply = findViewById(R.id.btnMultiply);
 
+        etFirst.setText("10");
+        etSecond.setText("5");
         btnSum.setOnClickListener(this);
         btnMultiply.setOnClickListener(this);
 
@@ -40,8 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 second =Integer.parseInt(etSecond.getText().toString());
                 arithmetic = new Arithmetic(first,second);
                 result = arithmetic.add();
-                Toast.makeText(this, "Sum is : " + result, Toast.LENGTH_SHORT).show();
-
+               tvOutput.setText(Integer.toString(result));
                 break;
 
             case R.id.btnMultiply :
@@ -49,8 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 second =Integer.parseInt(etFirst.getText().toString());
                 arithmetic = new Arithmetic(first,second);
                 result = arithmetic.mult();
-                Toast.makeText(this, "Multiplication is : " + result, Toast.LENGTH_SHORT).show();
-
+                tvOutput.setText(result);
                 break;
 
         }
